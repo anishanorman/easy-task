@@ -1,0 +1,11 @@
+button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+svg {
+    width: 24px;
+    height: 24px;
+    fill:#B91104;
+}

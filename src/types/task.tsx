@@ -9,7 +9,7 @@ export type Task = {
 export interface TasksContextValue {
     tasks: Task[];
     addTask: (task: Task) => void;
-    removeTask: (name: string) => void;
+    removeTask: (index: number) => void;
   }
   
   export const TasksContext = createContext<TasksContextValue>({

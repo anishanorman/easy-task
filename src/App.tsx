@@ -1,23 +1,25 @@
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css'
 import Tasks from './routes/Tasks';
-import { presets } from './helpers/presets';
 import { TasksProvider } from './helpers/TasksProvider';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { PresetsProvider } from './helpers/PresetsProvider';
+import Navigation from './components/Navigation';
 
 function App() {
-
-  if (!localStorage.getItem("presets")) {
-    console.log("No presets set! one sec...")
-    localStorage.setItem("presets", JSON.stringify(presets))
-  }
-
   return (
-    <TasksProvider>
-      <div className="App">
-        <Tasks />
-      </div>
+    <PresetsProvider>    
+      <TasksProvider>
+        <div className="App">
+          <Navigation />
+          <BrowserRouter>
+              <Routes>
+                  <Route path="/" element={<Tasks />} />
+                  {/* <Route path="/presets" element={<Presets />} /> */}
+              </Routes>
+          </BrowserRouter>
+        </div>
     </TasksProvider>
-
+  </PresetsProvider>
   );
 }
 

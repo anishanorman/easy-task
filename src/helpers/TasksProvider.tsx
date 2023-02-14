@@ -8,10 +8,12 @@ const TasksContext = createContext<TasksContextValue>({
   })
 
 function TasksProvider({ children }: any) {
-  const [tasks, setTasks] = useState<Task[]>([]);
+
+  const storedTasks = localStorage.getItem("tasks")
+
+  const [tasks, setTasks] = useState<Task[]>([])
 
     useEffect(() => {
-        const storedTasks = localStorage.getItem("tasks")
         if (storedTasks) {
             setTasks(JSON.parse(storedTasks))
         }
@@ -26,9 +28,14 @@ function TasksProvider({ children }: any) {
     setTasks([...tasks, task]);
   }
 
-  function removeTask(name: string) {
+  function removeTask(index: number) {
     // copy the current tasks array filtering out the task with the given name
-    setTasks(tasks.filter((task) => name !== task.task));
+    console.log(index)
+    setTasks(prev => {
+      const newTasks = [...prev]
+      newTasks.splice(index, 1)
+      return newTasks
+    });
   }
 
   return (

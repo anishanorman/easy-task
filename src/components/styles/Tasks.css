@@ -1,0 +1,12 @@
+#tasks {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 50px
+}
+
+button {
+    position: absolute;
+    right: 0;
+}

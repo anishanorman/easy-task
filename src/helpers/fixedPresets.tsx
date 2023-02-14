@@ -1,4 +1,4 @@
-export const presets =  [
+export const fixedPresets =  [
         {
             task: "Tidy Room",
             progress: 0,

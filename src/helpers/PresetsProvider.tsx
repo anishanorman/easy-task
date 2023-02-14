@@ -18,7 +18,6 @@ function PresetsProvider({ children }: any) {
     useEffect(() => {
         if (storedPresets) {
             setPresets(JSON.parse(storedPresets))
-            console.log(presets)
         } else {
             setPresets(fixedPresets)
         }

@@ -1,7 +1,7 @@
-import Task from "../components/Task"
 import { useContext } from "react"
 import { TasksContext } from "../helpers/TasksProvider"
 import "../components/styles/Tasks.css"
+import Container from "../components/Container"
 
 export default function Tasks() {
 
@@ -11,7 +11,7 @@ export default function Tasks() {
         <div id="tasks">
             {tasks.map((task, index) => {
                 return(
-                    <Task key={index} task={task.task} index={index} />
+                    <Container key={index} task={task} index={index} interactive/>
                 )
             })}
         </div>

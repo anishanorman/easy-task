@@ -30,7 +30,6 @@ function TasksProvider({ children }: any) {
 
   function removeTask(index: number) {
     // copy the current tasks array filtering out the task with the given name
-    console.log(index)
     setTasks(prev => {
       const newTasks = [...prev]
       newTasks.splice(index, 1)

@@ -1,10 +1,5 @@
 .card {
     width: 25rem;
     aspect-ratio: 1.2;
-    background-color: azure;
     text-align: center;
-}
-
-.card-header {
-    background-color:powderblue;
 }

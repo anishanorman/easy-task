@@ -32,7 +32,6 @@ function PresetsProvider({ children }: any) {
   }
 
   function removePreset(index: number) {
-    console.log(index)
     setPresets(prev => {
       const newPresets = [...prev]
       newPresets.splice(index, 1)

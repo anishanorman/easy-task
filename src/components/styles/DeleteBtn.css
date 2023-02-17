@@ -1,12 +1,11 @@
 button {
-    background-color: transparent;
+    background: none;
     border: none;
     padding: 0;
-    margin-right: 5px !important;
 }
 
 svg {
-    width: 24px;
+    display: block;
     height: 24px;
     fill:#B91104;
 }

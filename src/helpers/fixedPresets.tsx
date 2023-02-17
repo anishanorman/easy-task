@@ -89,7 +89,16 @@ export const fixedPresets =  [
             ]
         },
         {
-            task: "Test2",
+            task: "Test3",
+            progress: 0,
+            subtasks: [
+                {task: "Test4",
+                    progress: 0,
+                    subtasks: []}
+            ]
+        },
+        {
+            task: "Single",
             progress: 0,
             subtasks: []
         }

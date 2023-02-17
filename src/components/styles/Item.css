@@ -1,0 +1,12 @@
+.item {
+    display: flex;
+
+}
+
+.item button {
+    height: fit-content;
+}
+
+.item p {
+    margin: 0;
+}

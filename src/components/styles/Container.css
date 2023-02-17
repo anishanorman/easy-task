@@ -1,5 +1,14 @@
 .card {
-    width: 25rem;
-    aspect-ratio: 1.2;
     text-align: center;
+    height: fit-content !important;
+}
+
+.card-header {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+.card-title.h5 {
+    margin: 0;
 }

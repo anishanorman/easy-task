@@ -9,17 +9,17 @@ export type Task = {
 export interface TasksContextValue {
     tasks: Task[];
     addTask: (task: Task) => void;
-    removeTask: (index: number) => void;
+    deleteTask: (indexes: number[]) => void;
     updateTask: (indexes: number[], done: boolean) => void;
-    updateTaskCompletion: (task: Task) => void;
+    updateTasks: () => void;
   }
   
   export const TasksContext = createContext<TasksContextValue>({
     tasks: [],
     addTask: () => {},
-    removeTask: () => {},
+    deleteTask: () => {},
     updateTask: () => {},
-    updateTaskCompletion: () => {}
+    updateTasks: () => {}
   });
 
 export var localStorage: {

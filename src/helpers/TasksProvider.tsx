@@ -1,13 +1,13 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useCallback, useEffect } from "react";
 import { Task, TasksContextValue } from "../types/task";
 import { useImmer } from "use-immer";
 
 const TasksContext = createContext<TasksContextValue>({
   tasks: [],
   addTask: () => {},
-  removeTask: () => {},
+  deleteTask: () => {},
   updateTask: () => {},
-  updateTaskCompletion: () => {}
+  updateTasks: () => {},
 });
 
 function TasksProvider({ children }: any) {
@@ -47,9 +47,6 @@ function TasksProvider({ children }: any) {
   }
 
   useEffect(() => {
-    setTasks((draft) => {
-      return tasks.map(updateTaskCompletion);
-    });
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
@@ -59,12 +56,14 @@ function TasksProvider({ children }: any) {
     });
   }
 
-  function removeTask(index: number) {
+  function deleteTask(indexes: number[]) {
     setTasks((draft) => {
-      draft.splice(index, 1);
+      const taskList = indexes
+        .slice(0, -1)
+        .reduce((acc, cur) => acc[cur].subtasks, draft);
+      taskList.splice(indexes.slice(-1)[0], 1);
     });
   }
-
   function updateTask(indexes: number[], done: boolean) {
     setTasks((draft) => {
       const task = indexes
@@ -74,8 +73,24 @@ function TasksProvider({ children }: any) {
     });
   }
 
+  function updateTasks() {
+    setTasks((draft) => {
+      const updatedTasks = tasks.map(updateTaskCompletion);
+  
+      // Only update the state if the tasks have actually changed
+      if (JSON.stringify(updatedTasks) !== JSON.stringify(draft)) {
+        return updatedTasks;
+      }
+  
+      return draft;
+    });
+  }
+  
+
   return (
-    <TasksContext.Provider value={{ tasks, addTask, removeTask, updateTask, updateTaskCompletion }}>
+    <TasksContext.Provider
+      value={{ tasks, addTask, deleteTask, updateTask, updateTasks }}
+    >
       {children}
     </TasksContext.Provider>
   );

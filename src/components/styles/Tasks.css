@@ -1,7 +1,8 @@
 #tasks {
     display: flex;
-    gap: 30px;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 50px
+    padding: 25px;
+    align-items: center;
+    gap: 20px;
 }

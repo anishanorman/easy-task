@@ -7,12 +7,6 @@ import Navigation from './components/Navigation';
 
 function App() {
 
-  if (typeof localStorage === 'object') {
-    console.log('localStorage is enabled');
-  } else {
-    console.log('localStorage is not enabled');
-  }
-
   return (
     <PresetsProvider>    
       <TasksProvider>

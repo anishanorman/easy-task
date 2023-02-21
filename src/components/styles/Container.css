@@ -1,6 +1,9 @@
 .card {
-    text-align: center;
     height: fit-content !important;
+}
+
+.accordion {
+    width: 95%;
 }
 
 .card-header {
@@ -11,4 +14,11 @@
 
 .card-title.h5 {
     margin: 0;
+}
+
+.card-body {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
 }

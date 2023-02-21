@@ -7,9 +7,8 @@ import "./styles/Container.css";
 function MinMaxButton({ children, eventKey }: any) {
   const [expanded, setExpanded] = useState(false);
 
-
   const handleClick = useAccordionButton(eventKey, () =>
-    expanded? setExpanded(false) : setExpanded(true)
+    expanded ? setExpanded(false) : setExpanded(true)
   );
 
   return (
@@ -25,10 +24,28 @@ function MinMaxButton({ children, eventKey }: any) {
 }
 
 export default function Container(props: any) {
-
-  const [progress, setProgress] = useState(0);
-
   const task = props.task;
+
+  function findProgress() {
+    //find out how many subtasks there are
+    const subtasks = props.task.subtasks.length
+    //find out how many subtasks are done
+    var count = 0
+    for (let i in props.task.subtasks) {
+        if (props.task.subtasks[i].done) {
+            count++
+        }
+    }
+
+    // if (count/subtasks===1) {
+    //     updateTask(props.path, true)
+    // } else {
+    //     updateTask(props.path, false)
+    // }
+
+    return `${count}/${subtasks}`
+
+  }
 
   if (task.subtasks.length > 0) {
     return (
@@ -41,10 +58,20 @@ export default function Container(props: any) {
           <Accordion.Collapse eventKey={props.task.task}>
             <Card.Body>
               {task.subtasks.length === 1 ? (
-                <Item path={[...props.path, 0]} task={task.subtasks[0]} smallest/>
+                <Item
+                  path={[...props.path, 0]}
+                  task={task.subtasks[0]}
+                  smallest
+                />
               ) : (
                 task.subtasks.map((subtask: Task, index: number) => {
-                  return <Container path={[...props.path, index]} key={subtask.task} task={subtask} />
+                  return (
+                    <Container
+                      path={[...props.path, index]}
+                      key={subtask.task}
+                      task={subtask}
+                    />
+                  );
                 })
               )}
             </Card.Body>
@@ -53,5 +80,5 @@ export default function Container(props: any) {
       </Accordion>
     );
   }
-  return <Item path={props.path} task={task} smallest/>;
+  return <Item path={props.path} task={task} smallest />;
 }

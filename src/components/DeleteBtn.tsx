@@ -6,7 +6,7 @@ export default function DeleteBtn(props: any) {
 
     const { deleteTask } = useContext(TasksContext)
 
-    const handleClick = () => (event: any) => {
+    function handleClick(event: any) {
         deleteTask(props.path)
     }
 

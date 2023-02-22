@@ -8,17 +8,21 @@ export type Task = {
 
 export interface TasksContextValue {
     tasks: Task[];
-    addTask: (task: Task) => void;
+    addPreset: (task: Task) => void;
+    addTask: (indexes: number[]) => void;
     deleteTask: (indexes: number[]) => void;
-    updateTask: (indexes: number[], done: boolean) => void;
+    updateTaskDone: (indexes: number[], done: boolean) => void;
+    updateTaskName: (indexes: number[], name: string) => void;
     updateTasks: () => void;
   }
   
   export const TasksContext = createContext<TasksContextValue>({
     tasks: [],
+    addPreset: () => {},
     addTask: () => {},
     deleteTask: () => {},
-    updateTask: () => {},
+    updateTaskDone: () => {},
+    updateTaskName: () => {},
     updateTasks: () => {}
   });
 

@@ -11,7 +11,7 @@ export default function Tasks() {
       {tasks.map((task, index) => {
         let path=[]
         return (
-          <div key={task.task} className="task">
+          <div key={index} className="task">
             <Container index={index} path={[index]} task={task} />
           </div>
         )

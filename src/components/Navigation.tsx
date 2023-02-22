@@ -6,11 +6,11 @@ import { Task } from "../types/task"
 
 export default function Navigation() {
 
-    const { addTask } = useContext(TasksContext)
+    const { addPreset } = useContext(TasksContext)
     const { presets } = useContext(PresetsContext)
   
     const handleClick = (index: number) => (event: any) => {
-        addTask(presets[index])
+        addPreset(presets[index])
     }
 
     return (

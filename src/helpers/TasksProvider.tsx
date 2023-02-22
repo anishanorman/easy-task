@@ -4,9 +4,11 @@ import { useImmer } from "use-immer";
 
 const TasksContext = createContext<TasksContextValue>({
   tasks: [],
+  addPreset: () => {},
   addTask: () => {},
   deleteTask: () => {},
-  updateTask: () => {},
+  updateTaskDone: () => {},
+  updateTaskName: () => {},
   updateTasks: () => {},
 });
 
@@ -50,10 +52,19 @@ function TasksProvider({ children }: any) {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
-  function addTask(task: Task) {
+  function addPreset(task: Task) {
     setTasks((draft) => {
       draft.push(task);
     });
+  }
+
+  function addTask(indexes: number[]) {
+    setTasks((draft) => {
+      const task = indexes
+      .slice(0, -1)
+      .reduce((acc, cur) => acc[cur].subtasks, draft)[indexes.slice(-1)[0]];
+      task.subtasks.push({task: "New Task", done: false, subtasks: []})
+    })
   }
 
   function deleteTask(indexes: number[]) {
@@ -64,13 +75,22 @@ function TasksProvider({ children }: any) {
       taskList.splice(indexes.slice(-1)[0], 1);
     });
   }
-  function updateTask(indexes: number[], done: boolean) {
+  function updateTaskDone(indexes: number[], done: boolean=false) {
     setTasks((draft) => {
       const task = indexes
         .slice(0, -1)
         .reduce((acc, cur) => acc[cur].subtasks, draft)[indexes.slice(-1)[0]];
       task.done = done;
     });
+  }
+
+  function updateTaskName(indexes: number[], name: string) {
+    setTasks((draft) => {
+      const task = indexes
+        .slice(0, -1)
+        .reduce((acc, cur) => acc[cur].subtasks, draft)[indexes.slice(-1)[0]];
+      task.task = name
+    })
   }
 
   function updateTasks() {
@@ -89,7 +109,7 @@ function TasksProvider({ children }: any) {
 
   return (
     <TasksContext.Provider
-      value={{ tasks, addTask, deleteTask, updateTask, updateTasks }}
+      value={{ tasks, addPreset, addTask, deleteTask, updateTaskDone, updateTaskName, updateTasks }}
     >
       {children}
     </TasksContext.Provider>

@@ -9,3 +9,7 @@
 .item p {
     margin: 0;
 }
+
+form {
+    display: flex;
+}

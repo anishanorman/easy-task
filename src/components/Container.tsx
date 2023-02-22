@@ -1,9 +1,8 @@
 import { Accordion, Card, useAccordionButton } from "react-bootstrap";
 import { Task } from "../types/task";
 import Item from "./Item";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import "./styles/Container.css";
-import { TasksContext } from "../helpers/TasksProvider";
 
 function MinMaxButton({ children, eventKey }: any) {
   const [expanded, setExpanded] = useState(false);
@@ -32,7 +31,6 @@ const styles = {
 };
 
 export default function Container(props: any) {
-
   const task = props.task;
 
   if (task.subtasks.length > 0) {
@@ -45,23 +43,20 @@ export default function Container(props: any) {
           </Card.Header>
           <Accordion.Collapse eventKey={props.task.task}>
             <Card.Body>
-                {task.subtasks.map((subtask: Task, index: number) => {
-                  return (
-                    <Container
-                      path={[...props.path, index]}
-                      key={index}
-                      task={subtask}
-                    />
-                  );
-                })
-              }
+              {task.subtasks.map((subtask: Task, index: number) => {
+                return (
+                  <Container
+                    path={[...props.path, index]}
+                    key={index}
+                    task={subtask}
+                  />
+                );
+              })}
             </Card.Body>
           </Accordion.Collapse>
         </Card>
       </Accordion>
     );
   }
-  return (
-      <Item path={props.path} task={task} smallest />
-  );
+  return <Item path={props.path} task={task} smallest />;
 }

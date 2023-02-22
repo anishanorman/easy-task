@@ -1,6 +1,6 @@
 import { createContext, useCallback, useEffect } from "react";
 import { Task, TasksContextValue } from "../types/task";
-import { useImmer } from "use-immer";
+import { useImmer }  from "use-immer"
 
 const TasksContext = createContext<TasksContextValue>({
   tasks: [],
@@ -53,13 +53,13 @@ function TasksProvider({ children }: any) {
   }, [tasks]);
 
   function addPreset(task: Task) {
-    setTasks((draft) => {
+    setTasks((draft: Task[]) => {
       draft.push(task);
     });
   }
 
   function addTask(indexes: number[]) {
-    setTasks((draft) => {
+    setTasks((draft: Task[]) => {
       const task = indexes
       .slice(0, -1)
       .reduce((acc, cur) => acc[cur].subtasks, draft)[indexes.slice(-1)[0]];
@@ -68,7 +68,7 @@ function TasksProvider({ children }: any) {
   }
 
   function deleteTask(indexes: number[]) {
-    setTasks((draft) => {
+    setTasks((draft: Task[]) => {
       const taskList = indexes
         .slice(0, -1)
         .reduce((acc, cur) => acc[cur].subtasks, draft);
@@ -76,7 +76,7 @@ function TasksProvider({ children }: any) {
     });
   }
   function updateTaskDone(indexes: number[], done: boolean=false) {
-    setTasks((draft) => {
+    setTasks((draft: Task[]) => {
       const task = indexes
         .slice(0, -1)
         .reduce((acc, cur) => acc[cur].subtasks, draft)[indexes.slice(-1)[0]];
@@ -85,7 +85,7 @@ function TasksProvider({ children }: any) {
   }
 
   function updateTaskName(indexes: number[], name: string) {
-    setTasks((draft) => {
+    setTasks((draft: Task[]) => {
       const task = indexes
         .slice(0, -1)
         .reduce((acc, cur) => acc[cur].subtasks, draft)[indexes.slice(-1)[0]];
@@ -94,7 +94,7 @@ function TasksProvider({ children }: any) {
   }
 
   function updateTasks() {
-    setTasks((draft) => {
+    setTasks((draft: Task[]) => {
       const updatedTasks = tasks.map(updateTaskCompletion);
   
       // Only update the state if the tasks have actually changed

@@ -1,6 +1,6 @@
 import DeleteBtn from "./DeleteBtn";
 import "./styles/Item.css";
-import { useContext, useCallback, useEffect, useState } from "react";
+import { useContext, useCallback, useEffect, useState, useRef } from "react";
 import { TasksContext } from "../helpers/TasksProvider";
 import { Button, Form, FormGroup } from "react-bootstrap";
 
@@ -9,7 +9,8 @@ export default function Item(props: any) {
   const { tasks, updateTaskDone, updateTaskName, updateTasks, addTask } = useContext(TasksContext);
 
   const [editable, setEditable] = useState(false);
-  const name = useState(props.task.task)
+
+  const inputRef = useRef(null)
 
   const handleUpdateTasks = useCallback(() => {
     updateTasks();
@@ -35,22 +36,28 @@ export default function Item(props: any) {
     if (e.detail === 2) {
       setEditable(true)
     }
-  };
+  }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault()
     const form = e.target as HTMLFormElement
     const input = form.elements[0] as HTMLInputElement;
     updateTaskName(props.path, input.value)
     setEditable(false)
-  };
+  }
+
+  const handleBlur = (e: any) => {
+    console.log(e.target.value)
+    updateTaskName(props.path, e.target.value)
+    setEditable(false)
+  }
 
   function handlePlusClick() {
     addTask(props.path)
   }
 
   return (
-    <div className="item" style={editable ? { color: "red" } : { color: "" }}>
+    <div className="item" >
       {!props.smallest && <p>{props.progress}</p>}
       {props.smallest && (
         <input
@@ -66,7 +73,7 @@ export default function Item(props: any) {
       )}
       {editable && (
         <Form onSubmit={handleSubmit}>
-          <Form.Control defaultValue={props.task.task} placeholder="Enter Task" />
+          <Form.Control ref={inputRef} defaultValue={props.task.task} placeholder="Enter Task" onBlur={handleBlur} autoFocus/>
           <Button type="submit">Save</Button>
         </Form>
       )}
@@ -75,5 +82,5 @@ export default function Item(props: any) {
         add
       </span>
     </div>
-  );
+  )
 }

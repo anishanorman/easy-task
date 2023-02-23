@@ -1,49 +1,65 @@
-import { createContext, useState, useEffect } from 'react';
-import { PresetsContextValue } from '../types/preset';
-import { Task } from '../types/task';
-import { fixedPresets } from './fixedPresets';
+import { createContext, useCallback, useEffect } from "react";
+import { PresetsContextValue } from "../types/preset";
+import { Task } from "../types/task";
+import { useImmer } from "use-immer";
 
 const PresetsContext = createContext<PresetsContextValue>({
-    presets: [],
-    addPreset: () => {},
-    removePreset: () => {}
-  })
+  presets: [],
+  newPreset: () => {},
+  deletePreset: () => {},
+  updatePresetName: () => {},
+});
 
 function PresetsProvider({ children }: any) {
+  const storedPresets = localStorage.getItem("presets");
+  const [presets, setPresets] = useImmer<Task[]>(
+    storedPresets ? JSON.parse(storedPresets) : []
+  );
 
-  const [presets, setPresets] = useState<Task[]>([])
+  useEffect(() => {
+    localStorage.setItem("presets", JSON.stringify(presets));
+  }, [presets]);
 
-  const storedPresets = localStorage.getItem("presets")
-
-    useEffect(() => {
-        if (storedPresets) {
-            setPresets(JSON.parse(storedPresets))
-        } else {
-            setPresets(fixedPresets)
-        }
-    }, [])
-
-    useEffect(() => {
-        localStorage.setItem("presets", JSON.stringify(presets))
-    }, [presets])
-
-  function addPreset(preset: Task) {
-    setPresets([...presets, preset]);
+  function newPreset(indexes: number[]) {
+    if (indexes.length === 0) {
+      setPresets((draft: Task[]) => {
+        draft.push({ task: "New Preset", done: false, subtasks: [] });
+      });
+    } else {
+      setPresets((draft: Task[]) => {
+        const preset = indexes
+          .slice(0, -1)
+          .reduce((acc, cur) => acc[cur].subtasks, draft)[indexes.slice(-1)[0]];
+        preset.subtasks.push({ task: "New Preset", done: false, subtasks: [] });
+      });
+    }
   }
 
-  function removePreset(index: number) {
-    setPresets(prev => {
-      const newPresets = [...prev]
-      newPresets.splice(index, 1)
-      return newPresets
+  function deletePreset(indexes: number[]) {
+    setPresets((draft: Task[]) => {
+      const presetList = indexes
+        .slice(0, -1)
+        .reduce((acc, cur) => acc[cur].subtasks, draft);
+      presetList.splice(indexes.slice(-1)[0], 1);
+    });
+  }
+
+  function updatePresetName(indexes: number[], name: string) {
+    setPresets((draft: Task[]) => {
+      const preset = indexes
+        .slice(0, -1)
+        .reduce((acc, cur) => acc[cur].subtasks, draft)[indexes.slice(-1)[0]];
+      preset.task = name;
     });
   }
 
   return (
-    <PresetsContext.Provider value={{presets, addPreset, removePreset}}>
+    <PresetsContext.Provider
+      value={{ presets, newPreset, deletePreset, updatePresetName }}
+    >
       {children}
     </PresetsContext.Provider>
   );
 }
 
-export { PresetsProvider, PresetsContext }
+export { PresetsProvider, PresetsContext };

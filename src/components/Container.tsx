@@ -1,9 +1,9 @@
 import { Accordion, Card, useAccordionButton } from "react-bootstrap";
 import { Task } from "../types/task";
-import Item from "./Item";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import "./styles/Container.css";
-import { TasksContext } from "../helpers/TasksProvider";
+import SingleTask from "./SingleTask";
+import SinglePreset from "./SinglePreset";
 
 function MinMaxButton({ children, eventKey }: any) {
   const [expanded, setExpanded] = useState(false);
@@ -32,36 +32,46 @@ const styles = {
 };
 
 export default function Container(props: any) {
-
-  const task = props.task;
+  const task = props.task || props.preset;
 
   if (task.subtasks.length > 0) {
     return (
       <Accordion>
-        <Card style={props.task.done ? styles.done : styles.ongoing}>
+        <Card style={task.done ? styles.done : styles.ongoing}>
           <Card.Header style={{ border: task.subtasks.length > 0 ? "" : 0 }}>
-            <Item path={props.path} task={task} />
-            <MinMaxButton eventKey={props.task.task} />
+            {props.task ? (
+              <SingleTask path={props.path} task={task} />
+            ) : (
+              <SinglePreset path={props.path} preset={task} />
+            )}
+            <MinMaxButton eventKey={task.task} />
           </Card.Header>
-          <Accordion.Collapse eventKey={props.task.task}>
+          <Accordion.Collapse eventKey={task.task}>
             <Card.Body>
-                {task.subtasks.map((subtask: Task, index: number) => {
-                  return (
-                    <Container
-                      path={[...props.path, index]}
-                      key={index}
-                      task={subtask}
-                    />
-                  );
-                })
-              }
+              {task.subtasks.map((subtask: Task, index: number) => {
+                return props.task ? (
+                  <Container
+                    path={[...props.path, index]}
+                    key={index}
+                    task={subtask}
+                  />
+                ) : (
+                  <Container
+                    path={[...props.path, index]}
+                    key={index}
+                    preset={subtask}
+                  />
+                );
+              })}
             </Card.Body>
           </Accordion.Collapse>
         </Card>
       </Accordion>
     );
   }
-  return (
-      <Item path={props.path} task={task} smallest />
+  return props.task ? (
+    <SingleTask path={props.path} task={task} smallest />
+  ) : (
+    <SinglePreset path={props.path} preset={task} smallest />
   );
 }

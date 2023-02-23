@@ -1,13 +1,20 @@
 import "./styles/DeleteBtn.css"
 import { TasksContext } from "../helpers/TasksProvider"
 import { useContext } from "react"
+import { PresetsContext } from "../helpers/PresetsProvider"
 
 export default function DeleteBtn(props: any) {
 
     const { deleteTask } = useContext(TasksContext)
+    const { deletePreset } = useContext(PresetsContext)
 
     function handleClick(event: any) {
-        deleteTask(props.path)
+        if (props.type==="task") {
+            deleteTask(props.path)
+        } else {
+            deletePreset(props.path)
+        }
+
     }
 
     return (

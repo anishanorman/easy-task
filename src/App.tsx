@@ -4,6 +4,7 @@ import { TasksProvider } from './helpers/TasksProvider';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { PresetsProvider } from './helpers/PresetsProvider';
 import Navigation from './components/Navigation';
+import Presets from './routes/Presets';
 
 function App() {
 
@@ -15,7 +16,7 @@ function App() {
           <BrowserRouter>
               <Routes>
                   <Route path="/" element={<Tasks />} />
-                  {/* <Route path="/presets" element={<Presets />} /> */}
+                  <Route path="/presets" element={<Presets />} />
               </Routes>
           </BrowserRouter>
         </div>

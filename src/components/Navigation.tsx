@@ -3,13 +3,14 @@ import { useContext } from "react";
 import { TasksContext } from "../helpers/TasksProvider";
 import { PresetsContext } from "../helpers/PresetsProvider";
 import { Task } from "../types/task";
+import { useNavigate } from "react-router"
 
 export default function Navigation() {
-  const { addPreset, addTask } = useContext(TasksContext);
+  const { addPreset } = useContext(TasksContext);
   const { presets } = useContext(PresetsContext);
 
   const handleClick = (index: number) => (event: any) => {
-    addPreset(presets[index]);
+    addPreset(presets[index])
   };
 
   return (
@@ -17,7 +18,7 @@ export default function Navigation() {
       <Navbar.Brand href="/">Easy Task</Navbar.Brand>
       <Nav>
         <Nav.Link href="/">My Tasks</Nav.Link>
-        <NavDropdown title="Presets" id="nav-dropdown">
+        <NavDropdown title="New Task" id="nav-dropdown">
           {presets &&
             presets.map((task: Task, index: number) => {
               if (index === 0) {
@@ -26,6 +27,7 @@ export default function Navigation() {
                     <NavDropdown.Item
                       eventKey={task.task}
                       onClick={handleClick(index)}
+                      href="/"
                     >
                       {task.task}
                     </NavDropdown.Item>
@@ -38,13 +40,15 @@ export default function Navigation() {
                     key={index}
                     eventKey={task.task}
                     onClick={handleClick(index)}
+                    href="/"
                   >
-                    {task.task}
+{task.task}
                   </NavDropdown.Item>
                 );
               }
             })}
         </NavDropdown>
+        <Nav.Link href="/presets">My Presets</Nav.Link>
       </Nav>
     </Navbar>
   );

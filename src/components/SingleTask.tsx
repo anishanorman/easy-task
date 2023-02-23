@@ -3,10 +3,11 @@ import "./styles/Item.css";
 import { useContext, useCallback, useEffect, useState, useRef } from "react";
 import { TasksContext } from "../helpers/TasksProvider";
 import { Button, Form, FormGroup } from "react-bootstrap";
+import { PresetsContext } from "../helpers/PresetsProvider";
 
-export default function Item(props: any) {
+export default function SingleTask(props: any) {
 
-  const { tasks, updateTaskDone, updateTaskName, updateTasks, addTask } = useContext(TasksContext);
+  const { tasks, updateTaskDone, updateTaskName, updateTasks, newTask } = useContext(TasksContext)
 
   const [editable, setEditable] = useState(false);
 
@@ -53,7 +54,7 @@ export default function Item(props: any) {
   }
 
   function handlePlusClick() {
-    addTask(props.path)
+    newTask(props.path)
   }
 
   return (
@@ -77,8 +78,8 @@ export default function Item(props: any) {
           <Button type="submit">Save</Button>
         </Form>
       )}
-      <DeleteBtn path={props.path} />
-      <span className="material-symbols-outlined" onClick={handlePlusClick}>
+      <DeleteBtn type="task" path={props.path} />
+      <span className="material-symbols-outlined" onClick={handlePlusClick} style={{cursor: "pointer"}}>
         add
       </span>
     </div>

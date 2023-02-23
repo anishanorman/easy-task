@@ -5,7 +5,7 @@ import { useImmer }  from "use-immer"
 const TasksContext = createContext<TasksContextValue>({
   tasks: [],
   addPreset: () => {},
-  addTask: () => {},
+  newTask: () => {},
   deleteTask: () => {},
   updateTaskDone: () => {},
   updateTaskName: () => {},
@@ -58,7 +58,7 @@ function TasksProvider({ children }: any) {
     });
   }
 
-  function addTask(indexes: number[]) {
+  function newTask(indexes: number[]) {
     setTasks((draft: Task[]) => {
       const task = indexes
       .slice(0, -1)
@@ -109,7 +109,7 @@ function TasksProvider({ children }: any) {
 
   return (
     <TasksContext.Provider
-      value={{ tasks, addPreset, addTask, deleteTask, updateTaskDone, updateTaskName, updateTasks }}
+      value={{ tasks, addPreset, newTask, deleteTask, updateTaskDone, updateTaskName, updateTasks }}
     >
       {children}
     </TasksContext.Provider>

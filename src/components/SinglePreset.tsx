@@ -1,12 +1,12 @@
 import DeleteBtn from "./DeleteBtn";
 import "./styles/Item.css";
-import { useContext, useCallback, useEffect, useState, useRef } from "react";
-import { Button, Form, FormGroup } from "react-bootstrap";
+import { useContext, useState, useRef } from "react";
+import { Button, Form} from "react-bootstrap";
 import { PresetsContext } from "../helpers/PresetsProvider";
 
 export default function SinglePreset(props: any) {
 
-  const { presets, newPreset, updatePresetName, deletePreset } = useContext(PresetsContext)
+  const { newPreset, updatePresetName } = useContext(PresetsContext)
 
   const [editable, setEditable] = useState(false);
 
@@ -27,7 +27,6 @@ export default function SinglePreset(props: any) {
   }
 
   const handleBlur = (e: any) => {
-    console.log(e.target.value)
     updatePresetName(props.path, e.target.value)
     setEditable(false)
   }

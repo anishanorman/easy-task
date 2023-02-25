@@ -1,16 +1,18 @@
-import { Accordion, Card, useAccordionButton } from "react-bootstrap";
+import { Accordion, AccordionContext, Card, useAccordionButton } from "react-bootstrap";
 import { Task } from "../types/task";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./styles/Container.css";
 import SingleTask from "./SingleTask";
 import SinglePreset from "./SinglePreset";
 
-function MinMaxButton({ children, eventKey }: any) {
-  const [expanded, setExpanded] = useState(false);
+function MinMaxButton({ children, eventKey, callback }: any) {
+  const { activeEventKey } = useContext(AccordionContext)
 
   const handleClick = useAccordionButton(eventKey, () =>
-    expanded ? setExpanded(false) : setExpanded(true)
+    callback && callback(eventKey)
   );
+
+  const expanded = activeEventKey === eventKey
 
   return (
     <button type="button" onClick={handleClick}>

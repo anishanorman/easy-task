@@ -3,7 +3,6 @@ import { useContext } from "react";
 import { TasksContext } from "../helpers/TasksProvider";
 import { PresetsContext } from "../helpers/PresetsProvider";
 import { Task } from "../types/task";
-import { useNavigate } from "react-router"
 
 export default function Navigation() {
   const { addPreset } = useContext(TasksContext);

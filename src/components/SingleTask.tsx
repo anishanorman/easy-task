@@ -2,8 +2,7 @@ import DeleteBtn from "./DeleteBtn";
 import "./styles/Item.css";
 import { useContext, useCallback, useEffect, useState, useRef } from "react";
 import { TasksContext } from "../helpers/TasksProvider";
-import { Button, Form, FormGroup } from "react-bootstrap";
-import { PresetsContext } from "../helpers/PresetsProvider";
+import { Button, Form } from "react-bootstrap";
 
 export default function SingleTask(props: any) {
 
@@ -48,7 +47,6 @@ export default function SingleTask(props: any) {
   }
 
   const handleBlur = (e: any) => {
-    console.log(e.target.value)
     updateTaskName(props.path, e.target.value)
     setEditable(false)
   }

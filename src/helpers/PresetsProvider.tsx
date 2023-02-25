@@ -2,6 +2,7 @@ import { createContext, useEffect } from "react";
 import { PresetsContextValue } from "../types/preset";
 import { Task } from "../types/task";
 import { useImmer } from "use-immer";
+import { fixedPresets } from "./fixedPresets";
 
 const PresetsContext = createContext<PresetsContextValue>({
   presets: [],
@@ -13,7 +14,7 @@ const PresetsContext = createContext<PresetsContextValue>({
 function PresetsProvider({ children }: any) {
   const storedPresets = localStorage.getItem("presets");
   const [presets, setPresets] = useImmer<Task[]>(
-    storedPresets ? JSON.parse(storedPresets) : []
+    storedPresets ? JSON.parse(storedPresets) : fixedPresets
   );
 
   useEffect(() => {

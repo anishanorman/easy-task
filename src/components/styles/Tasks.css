@@ -1,8 +1,0 @@
-#tasks, #presets {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 25px;
-    align-items: center;
-    gap: 20px;
-}

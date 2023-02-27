@@ -13,7 +13,7 @@ export default function Navigation() {
   };
 
   return (
-    <Navbar bg="dark" variant="dark">
+    <Navbar bg="dark" variant="dark" fixed="top">
       <Navbar.Brand href="/">Easy Task</Navbar.Brand>
       <Nav>
         <Nav.Link href="/">My Tasks</Nav.Link>
@@ -26,7 +26,6 @@ export default function Navigation() {
                     <NavDropdown.Item
                       eventKey={task.task}
                       onClick={handleClick(index)}
-                      href="/"
                     >
                       {task.task}
                     </NavDropdown.Item>

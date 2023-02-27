@@ -81,9 +81,10 @@ export default function SingleTask(props: any) {
         </Form>
       )}
       <DeleteBtn type="task" path={props.path} />
-      <span className="material-symbols-outlined" onClick={handlePlusClick} style={{cursor: "pointer"}}>
-        {!props.parent && "library_add"}
-      </span>
+      {!props.parent &&       <span className="material-symbols-outlined" onClick={handlePlusClick} style={{cursor: "pointer"}}>
+        library_add
+      </span>}
+
     </div>
   )
 }

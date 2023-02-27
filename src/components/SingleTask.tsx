@@ -42,12 +42,16 @@ export default function SingleTask(props: any) {
     e.preventDefault()
     const form = e.target as HTMLFormElement
     const input = form.elements[0] as HTMLInputElement;
-    updateTaskName(props.path, input.value)
+    if (input.value.length>0) {
+      updateTaskName(props.path, input.value)
+    }
     setEditable(false)
   }
 
   const handleBlur = (e: any) => {
-    updateTaskName(props.path, e.target.value)
+    if (e.target.value>0) {
+      updateTaskName(props.path, e.target.value)
+    }
     setEditable(false)
   }
 

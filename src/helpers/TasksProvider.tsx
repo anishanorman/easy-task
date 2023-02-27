@@ -50,12 +50,12 @@ function TasksProvider({ children }: any) {
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
+  }, [tasks])
 
   function addPreset(task: Task) {
     setTasks((draft: Task[]) => {
-      draft.push(task);
-    });
+      draft.push(task)
+    })
   }
 
   function newTask(indexes: number[]) {

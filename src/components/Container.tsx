@@ -38,7 +38,7 @@ export default function Container(props: any) {
 
   if (task.subtasks.length > 0) {
     return (
-      <Accordion>
+      <Accordion defaultActiveKey={task.task}>
         <Card style={task.done ? styles.done : styles.ongoing}>
           <Card.Header style={{ border: task.subtasks.length > 0 ? "" : 0 }}>
             {props.task ? (

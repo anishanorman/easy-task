@@ -82,7 +82,7 @@ export default function SingleTask(props: any) {
       )}
       <DeleteBtn type="task" path={props.path} />
       <span className="material-symbols-outlined" onClick={handlePlusClick} style={{cursor: "pointer"}}>
-        add
+        {!props.parent && "library_add"}
       </span>
     </div>
   )

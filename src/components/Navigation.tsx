@@ -9,11 +9,11 @@ export default function Navigation() {
   const { presets } = useContext(PresetsContext);
 
   const handleClick = (index: number) => (event: any) => {
-    addPreset(presets[index])
+    addPreset(presets[index]);
   };
 
   return (
-    <Navbar bg="dark" variant="dark" fixed="top">
+    <Navbar bg="dark" variant="dark" sticky="top">
       <Navbar.Brand href="/">Easy Task</Navbar.Brand>
       <Nav>
         <Nav.Link href="/">My Tasks</Nav.Link>
@@ -40,7 +40,7 @@ export default function Navigation() {
                     onClick={handleClick(index)}
                     href="/"
                   >
-{task.task}
+                    {task.task}
                   </NavDropdown.Item>
                 );
               }

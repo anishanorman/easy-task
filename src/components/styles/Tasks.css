@@ -1,0 +1,16 @@
+#tasks, #presets {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;;
+    align-items: baseline;
+    align-content: stretch;
+    flex-wrap: wrap
+}
+
+.task {
+    width: fit-content;
+    display:flex;
+    justify-content: center;
+    flex-grow: 1;
+}

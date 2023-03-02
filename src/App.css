@@ -1,3 +1,56 @@
 ul {
     padding: 0 !important;
 }
+
+button {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+svg {
+    display: block;
+    height: 24px;
+    fill:#B91104;
+}
+
+ul {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.task {
+    display: flex;
+    justify-content: center;;
+    width: 450px;
+    text-align: center;
+    height: fit-content;
+    outline: 1px solid black;
+}
+
+::marker {
+    display: none !important;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.item {
+    display: flex;
+    gap: 5px;
+}
+
+.item p {
+    margin: 0
+}
+
+.item div {
+    display: flex;
+}
+
+#tasks, #presets {
+    padding: 20px;
+}

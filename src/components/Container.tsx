@@ -8,7 +8,6 @@ import {
 } from "react-bootstrap";
 import { Task } from "../types/task";
 import { useContext, useState, useEffect } from "react";
-import "./styles/Container.css";
 import SingleTask from "./SingleTask";
 import SinglePreset from "./SinglePreset";
 import { TasksContext } from "../helpers/TasksProvider";

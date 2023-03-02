@@ -1,5 +1,4 @@
 import DeleteBtn from "./DeleteBtn";
-import "./styles/Item.css";
 import { useContext, useState, useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import { PresetsContext } from "../helpers/PresetsProvider";

@@ -1,4 +1,3 @@
-import "./styles/DeleteBtn.css"
 import { TasksContext } from "../helpers/TasksProvider"
 import { useContext } from "react"
 import { PresetsContext } from "../helpers/PresetsProvider"

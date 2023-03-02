@@ -2,10 +2,6 @@
     height: fit-content !important;
 }
 
-.accordion {
-    width: 95%;
-}
-
 .card-header {
     display: flex;
     justify-content:center;

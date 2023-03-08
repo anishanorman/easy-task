@@ -16,7 +16,7 @@ export default function Navigation() {
   };
 
   return (
-    <Navbar bg="dark" variant="dark" sticky="top">
+    <Navbar bg="dark" variant="dark">
       <Navbar.Brand href="/">Easy Task</Navbar.Brand>
       <Nav>
         <Nav.Link onClick={() => navigate("/")}>My Tasks</Nav.Link>

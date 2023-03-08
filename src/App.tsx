@@ -13,10 +13,10 @@ function App() {
         <div className="App">
           <BrowserRouter>
             <Navigation />
-            <Routes>
-              <Route path="/" element={<Tasks />} />
-              <Route path="/presets" element={<Presets />} />
-            </Routes>
+              <Routes>
+                <Route path="/" element={<Tasks />} />
+                <Route path="/presets" element={<Presets />} />
+              </Routes>
           </BrowserRouter>
         </div>
       </TasksProvider>

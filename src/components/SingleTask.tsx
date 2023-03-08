@@ -48,10 +48,10 @@ export default function SingleTask(props: any) {
   };
 
   const handleBlur = (e: any) => {
-    if (e.target.value > 0) {
-      updateTaskName(props.path, e.target.value);
-    }
-    setEditable(false);
+    // if (e.target.value > 0) {
+    //   updateTaskName(props.path, e.target.value);
+    // }
+    // setEditable(false);
   };
 
   function handlePlusClick() {
@@ -70,9 +70,24 @@ export default function SingleTask(props: any) {
       )}
       {!editable && (
         <div>
-          <p onClick={handleClick} style={{ textDecorationLine: crossedOut() }}>
-            {props.task.task}
-          </p>
+          {props.parent ? (
+            <strong>
+              <p
+                onClick={handleClick}
+                style={{ textDecorationLine: crossedOut() }}
+              >
+                {props.task.task}
+              </p>
+            </strong>
+          ) : (
+            <p
+              onClick={handleClick}
+              style={{ textDecorationLine: crossedOut() }}
+            >
+              {props.task.task}
+            </p>
+          )}
+
           <div className="icons">
             <DeleteBtn type="task" path={props.path} />
             {!props.parent && (

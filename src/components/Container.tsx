@@ -72,47 +72,45 @@ export default function Container(props: any) {
   if (task.subtasks.length > 0) {
     return (
       <Accordion defaultActiveKey={task.task}>
-        <Card style={task.done ? styles.done : styles.ongoing}>
-          {!props.child && (
-            <ProgressBar now={totalProgress} label={`${totalProgress}%`} />
+        {!props.child && (
+          <ProgressBar now={totalProgress} label={`${totalProgress}%`} />
+        )}
+        <div className="header">
+          {props.task ? (
+            <SingleTask path={props.path} task={task} parent />
+          ) : (
+            <SinglePreset path={props.path} preset={task} parent />
           )}
-          <Card.Header style={{ border: task.subtasks.length > 0 ? "" : 0 }}>
-            {props.task ? (
-              <SingleTask path={props.path} task={task} parent />
-            ) : (
-              <SinglePreset path={props.path} preset={task} parent />
-            )}
-            <MinMaxButton eventKey={task.task} />
-          </Card.Header>
-          <Accordion.Collapse eventKey={task.task}>
-            <Card.Body>
-                {task.subtasks.map((subtask: Task, index: number) => {
-                  return props.task ? (
-                      <Container
-                        path={[...props.path, index]}
-                        key={index}
-                        task={subtask}
-                        child
-                      />
-                  ) : (
-                    <Container
-                      path={[...props.path, index]}
-                      key={index}
-                      preset={subtask}
-                      child
-                    />
-                  );
-                })}
-              <span
-                className="material-symbols-outlined"
-                onClick={handlePlusClick}
-                style={{ cursor: "pointer" }}
-              >
-                add
-              </span>
-            </Card.Body>
-          </Accordion.Collapse>
-        </Card>
+          <MinMaxButton eventKey={task.task} />
+        </div>
+        <Accordion.Collapse eventKey={task.task}>
+          <div className="content">
+            {task.subtasks.map((subtask: Task, index: number) => {
+              return props.task ? (
+                <Container
+                  path={[...props.path, index]}
+                  key={index}
+                  task={subtask}
+                  child
+                />
+              ) : (
+                <Container
+                  path={[...props.path, index]}
+                  key={index}
+                  preset={subtask}
+                  child
+                />
+              );
+            })}
+            <span
+              className="material-symbols-outlined"
+              onClick={handlePlusClick}
+              style={{ cursor: "pointer" }}
+            >
+              add
+            </span>
+          </div>
+        </Accordion.Collapse>
       </Accordion>
     );
   }

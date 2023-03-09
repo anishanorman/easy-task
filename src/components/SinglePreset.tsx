@@ -35,28 +35,49 @@ export default function SinglePreset(props: any) {
 
   return (
     <div className="item">
-      {!editable && <p onClick={handleClick}>{props.preset.task}</p>}
+            {!editable && (
+        <div>
+          {props.parent ? (
+            <strong>
+              <p
+                onClick={handleClick}
+              >
+                {props.preset.task}
+              </p>
+            </strong>
+          ) : (
+            <p
+              onClick={handleClick}
+            >
+              {props.preset.task}
+            </p>
+          )}
+
+          <div className="icons">
+            <DeleteBtn type="preset" path={props.path} />
+            {!props.parent && (
+              <span
+                className="material-symbols-outlined"
+                onClick={handlePlusClick}
+                style={{ cursor: "pointer" }}
+              >
+                library_add
+              </span>
+            )}
+          </div>
+        </div>
+      )}
       {editable && (
         <Form onSubmit={handleSubmit}>
           <Form.Control
             ref={inputRef}
             defaultValue={props.preset.task}
-            placeholder="Enter Task"
+            placeholder="Enter Preset"
             onBlur={handleBlur}
             autoFocus
           />
           <Button type="submit">Save</Button>
         </Form>
-      )}
-      <DeleteBtn type="preset" path={props.path} />
-      {!props.parent && (
-        <span
-          className="material-symbols-outlined"
-          onClick={handlePlusClick}
-          style={{ cursor: "pointer" }}
-        >
-          library_add
-        </span>
       )}
     </div>
   );

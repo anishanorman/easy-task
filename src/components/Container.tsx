@@ -114,6 +114,19 @@ export default function Container(props: any) {
       </Accordion>
     );
   }
+
+  if (props.outer) {
+    return props.task ? (
+      <div className="single">
+        <SingleTask path={props.path} task={task} smallest />
+      </div>
+    ) : (
+      <div className="single">
+        <SinglePreset path={props.path} preset={task} smallest />
+      </div>
+    );
+  }
+
   return props.task ? (
     <SingleTask path={props.path} task={task} smallest />
   ) : (

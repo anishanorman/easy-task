@@ -7,17 +7,18 @@ export default function Tasks() {
 
   return (
       <div id="tasks">
-          {tasks.map((task, index) => {
-            return (
-              <div
-                key={task.task}
-                className="task"
-              >
-                
-                <Container index={index} path={[index]} task={task} />
-              </div>
-            );
-          })}
+        {tasks.map((task, index) => {
+          return (
+            <Container
+              className="task"
+              key={index}
+              index={index}
+              path={[index]}
+              task={task}
+              outer
+            />
+          );
+        })}
       </div>
   );
 }

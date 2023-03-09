@@ -4,6 +4,7 @@ import { TasksContext } from "../helpers/TasksProvider";
 import { PresetsContext } from "../helpers/PresetsProvider";
 import { Task } from "../types/task";
 import { useNavigate } from "react-router-dom";
+import Help from "./Help";
 
 export default function Navigation() {
   const { addPreset } = useContext(TasksContext);
@@ -49,6 +50,7 @@ export default function Navigation() {
             })}
         </NavDropdown>
         <Nav.Link href="/presets">My Presets</Nav.Link>
+        <Nav.Link id="help-button"><Help /></Nav.Link>
       </Nav>
     </Navbar>
   );

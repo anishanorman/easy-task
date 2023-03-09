@@ -2,6 +2,7 @@ import DeleteBtn from "./DeleteBtn";
 import { useContext, useCallback, useEffect, useState, useRef } from "react";
 import { TasksContext } from "../helpers/TasksProvider";
 import { Button, Form } from "react-bootstrap";
+import editIcon from "../assets/editIcon"
 
 export default function SingleTask(props: any) {
   const { tasks, updateTaskDone, updateTaskName, updateTasks, newTask } =
@@ -32,6 +33,7 @@ export default function SingleTask(props: any) {
   }
 
   const handleClick = (e: React.MouseEvent) => {
+    console.log(e)
     if (e.detail === 2) {
       setEditable(true);
     }
@@ -48,10 +50,10 @@ export default function SingleTask(props: any) {
   };
 
   const handleBlur = (e: any) => {
-    // if (e.target.value > 0) {
-    //   updateTaskName(props.path, e.target.value);
-    // }
-    // setEditable(false);
+    if (e.target.value.length > 0) {
+      updateTaskName(props.path, e.target.value);
+    }
+    setEditable(false);
   };
 
   function handlePlusClick() {
@@ -60,7 +62,6 @@ export default function SingleTask(props: any) {
 
   return (
     <div className="item">
-      {!props.smallest && <p>{props.progress}</p>}
       {props.smallest && (
         <input
           type="checkbox"
@@ -74,7 +75,7 @@ export default function SingleTask(props: any) {
             <strong>
               <p
                 onClick={handleClick}
-                style={{ textDecorationLine: crossedOut() }}
+                style={{ textDecorationLine: crossedOut(), cursor: `url(${editIcon}), auto` }}
               >
                 {props.task.task}
               </p>
@@ -103,12 +104,11 @@ export default function SingleTask(props: any) {
         </div>
       )}
       {editable && (
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} onBlur={handleBlur}>
           <Form.Control
             ref={inputRef}
             defaultValue={props.task.task}
             placeholder="Enter Task"
-            onBlur={handleBlur}
             autoFocus
           />
           <Button type="submit">Save</Button>

@@ -12,30 +12,18 @@ export default function Presets() {
 
   return (
     <div id="presets">
-      <motion.ul>
-        <AnimatePresence initial={false}>
           {presets.map((task, index) => {
             let path = [];
             if (index === 0) {
               return;
             }
             return (
-              <motion.div
-                key={index}
-                className="task"
-                initial={{ opacity: 0, scale: 0.3 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
-              >
-                <Container index={index} path={[index]} preset={task} />
-              </motion.div>
+                <Container className="task" key={index} index={index} path={[index]} preset={task} outer />
             );
           })}
-        </AnimatePresence>
-      </motion.ul>
 
       <div
-        className="material-symbols-outlined"
+        className="material-symbols-outlined add-button"
         onClick={handleClick}
         style={{ cursor: "pointer" }}
       >

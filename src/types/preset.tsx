@@ -6,14 +6,16 @@ export interface PresetsContextValue {
     newPreset: (indexes: number[]) => void;
     deletePreset: (indexes: number[]) => void;
     updatePresetName: (indexes: number[], name: string) => void;
+    resetToDefaults: () => void;
   }
   
-  export const TasksContext = createContext<PresetsContextValue>({
+export const TasksContext = createContext<PresetsContextValue>({
     presets: [],
     newPreset: () => {},
     deletePreset: () => {},
     updatePresetName: () => {},
-  });
+    resetToDefaults: () => {}
+});
 
 export var localStorage: {
     getItem(key: string): string | null;

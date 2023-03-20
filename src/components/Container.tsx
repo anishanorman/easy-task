@@ -11,6 +11,7 @@ import { useContext, useState, useEffect } from "react";
 import SingleTask from "./SingleTask";
 import SinglePreset from "./SinglePreset";
 import { TasksContext } from "../helpers/TasksProvider";
+import { PresetsContext } from "../helpers/PresetsProvider";
 
 function MinMaxButton({ children, eventKey, callback }: any) {
   const { activeEventKey } = useContext(AccordionContext);
@@ -43,6 +44,8 @@ const styles = {
 
 export default function Container(props: any) {
   const { newTask } = useContext(TasksContext);
+  const { newPreset } = useContext(PresetsContext);
+
   const task = props.task || props.preset;
   const [totalProgress, setTotalProgress] = useState<number>(0);
 
@@ -66,15 +69,27 @@ export default function Container(props: any) {
   }, [task]);
 
   function handlePlusClick() {
-    newTask(props.path);
+    if (props.task) {
+      newTask(props.path);
+    } else {
+      newPreset(props.path);
+    }
   }
 
   if (task.subtasks.length > 0) {
     return (
-      <Accordion defaultActiveKey={task.task}>
-        {!props.child && (
-          <ProgressBar now={totalProgress} label={`${totalProgress}%`} />
+      <Accordion
+        defaultActiveKey={task.task}
+        style={{ backgroundColor: totalProgress==100? "rgba(104, 131, 155, 0.2)" : "" }}
+      >
+        {props.task && (
+          <ProgressBar
+            now={totalProgress}
+            style={props.child ? { height: 5 + "px" } : { height: 10 + "px" }}
+            variant={totalProgress == 100 ? "secondary" : ""}
+          />
         )}
+
         <div className="header">
           {props.task ? (
             <SingleTask path={props.path} task={task} parent />

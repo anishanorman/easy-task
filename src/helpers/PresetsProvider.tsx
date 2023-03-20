@@ -9,6 +9,7 @@ const PresetsContext = createContext<PresetsContextValue>({
   newPreset: () => {},
   deletePreset: () => {},
   updatePresetName: () => {},
+  resetToDefaults: () => {},
 });
 
 function PresetsProvider({ children }: any) {
@@ -36,13 +37,22 @@ function PresetsProvider({ children }: any) {
     }
   }
 
+  function resetToDefaults() {
+    console.log("resettin");
+    setPresets(fixedPresets);
+  }
+
   function deletePreset(indexes: number[]) {
-    setPresets((draft: Task[]) => {
-      const presetList = indexes
-        .slice(0, -1)
-        .reduce((acc, cur) => acc[cur].subtasks, draft);
-      presetList.splice(indexes.slice(-1)[0], 1);
-    });
+    if (indexes.length === 0) {
+      setPresets([]);
+    } else {
+      setPresets((draft: Task[]) => {
+        const presetList = indexes
+          .slice(0, -1)
+          .reduce((acc, cur) => acc[cur].subtasks, draft);
+        presetList.splice(indexes.slice(-1)[0], 1);
+      });
+    }
   }
 
   function updatePresetName(indexes: number[], name: string) {
@@ -56,7 +66,13 @@ function PresetsProvider({ children }: any) {
 
   return (
     <PresetsContext.Provider
-      value={{ presets, newPreset, deletePreset, updatePresetName }}
+      value={{
+        presets,
+        newPreset,
+        deletePreset,
+        updatePresetName,
+        resetToDefaults,
+      }}
     >
       {children}
     </PresetsContext.Provider>

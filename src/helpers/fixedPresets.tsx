@@ -1,10 +1,5 @@
 export const fixedPresets = [
   {
-    task: "New Task",
-    done: false,
-    subtasks: [],
-  },
-  {
     task: "Tidy Room",
     done: false,
     subtasks: [
@@ -106,13 +101,39 @@ export const fixedPresets = [
     ],
   },
   {
-    task: "Test3",
+    task: "Everyday Tasks",
     done: false,
-    subtasks: [{ task: "Test4", done: false, subtasks: [] }],
-  },
-  {
-    task: "Single",
-    done: false,
-    subtasks: [],
+    subtasks: [
+      {
+        task: "Hydration",
+        done: false,
+        subtasks: [
+          { task: "Glass 1", done: false, subtasks: [] },
+          { task: "Glass 2", done: false, subtasks: [] },
+          { task: "Glass 3", done: false, subtasks: [] },
+          { task: "Glass 4", done: false, subtasks: [] },
+          { task: "Glass 5", done: false, subtasks: [] },
+          { task: "Glass 6", done: false, subtasks: [] },
+          { task: "Glass 7", done: false, subtasks: [] },
+          { task: "Glass 8", done: false, subtasks: [] },
+        ],
+      },
+      {
+        task: "Hygiene",
+        done: false,
+        subtasks: [
+          {
+            task: "Brush teeth",
+            done: false,
+            subtasks: [
+              { task: "Morning", done: false, subtasks: [] },
+              { task: "Evening", done: false, subtasks: [] },
+            ],
+          },
+          { task: "Shower", done: false, subtasks: [] },
+          { task: "", done: false, subtasks: [] },
+        ],
+      },
+    ],
   },
 ];

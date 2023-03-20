@@ -12,7 +12,6 @@ function App() {
       <TasksProvider>
         <div className="App">
           <BrowserRouter>
-            <Navigation />
               <Routes>
                 <Route path="/" element={<Tasks />} />
                 <Route path="/presets" element={<Presets />} />

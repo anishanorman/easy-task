@@ -4,7 +4,7 @@ import Card from "react-bootstrap/Card";
 import Offcanvas from "react-bootstrap/Offcanvas";
 
 const FAQs = [
-  { question: "How do I save?", answer: "Easy Task automatically saves to your browser, without you having to do anything!" },
+  { question: "Where is the save button?", answer: "Easy Task automatically saves everything to your browser, without you having to do anything!" },
   {
     question: "Can I access my tasks on another device?",
     answer:
@@ -13,16 +13,15 @@ const FAQs = [
   {
     question: "Why have all my tasks disappeared?",
     answer:
-      "As everything is stored locally in your browser, if you clear your cookies or try to access them in another browser they will disappear. There is currently no work-around for this, but it will be addressed in the future.",
+      "Everything is stored locally in your browser, so if you clear your cookies or try to access them elsewhere unfortunately you will not be able to see them.",
   },
-
 ];
 
 const instructions = [
-  { icon: "add", text: "Click the 'add' button to add a task or preset" },
+  { icon: "add", text: "Add a task" },
   {
     icon: "arrow_selector_tool",
-    text: "Double click the name of a task or preset to edit",
+    text: "Double click the name of a task to edit",
   },
   { icon: "library_add", text: "Introduce subtasks for a task or preset" },
   {
@@ -31,7 +30,7 @@ const instructions = [
   },
   {
     icon: "temp_preferences_custom",
-    text: "Click this button to generate a random task as inspiration!",
+    text: "Bored? Click this button to generate a random task!",
   },
   {
     icon: "check_box",
@@ -59,9 +58,9 @@ export default function Help() {
           <Card>
             <Card.Body>
               <ListGroup variant="flush">
-                {instructions.map((item) => {
+                {instructions.map((item, index) => {
                   return (
-                    <ListGroup.Item className="instruction">
+                    <ListGroup.Item key={index} className="instruction">
                       <span className="material-symbols-outlined">
                         {item.icon}
                       </span>
@@ -76,9 +75,9 @@ export default function Help() {
             <Card.Header as="h5">FAQs</Card.Header>
             <Card.Body>
               <ListGroup variant="flush">
-                {FAQs.map((item) => {
+                {FAQs.map((item, index) => {
                   return (
-                    <ListGroup.Item className="FAQ">
+                    <ListGroup.Item key={index} className="FAQ">
                       <strong>Q:</strong>
                       {item.question}
                       <strong>A:</strong>

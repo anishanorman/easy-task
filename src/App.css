@@ -69,6 +69,7 @@ svg {
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .content span {
@@ -84,7 +85,7 @@ svg {
     display: flex;
     overflow: auto;
     padding: 20px;
-    gap: 50px;
+    gap: 30px;
     width: 100vw;
     height: calc(100vh - 56px);
 }
@@ -130,6 +131,7 @@ body {
 
 nav {
   padding-left: 20px !important;
+  padding-right: 20px !important;
 }
 
 .add-button {
@@ -137,13 +139,8 @@ nav {
   width: fit-content;
   top: 8px;
   color: white;
-  right: 20px;
+  right: 50px;
   font-size: 40px;
-}
-
-#help-button {
-  position:absolute;
-  right: 10px;
 }
 
 .offcanvas-body {
@@ -170,4 +167,18 @@ nav {
 
 #text {
   font-size: smaller;
+}
+
+.progress-bar {
+  background-color: rgba(12, 91, 160, 0.7) !important;
+}
+
+#page-specific-buttons {
+  margin-left: 50px !important;
+}
+
+.nav-link {
+  display: flex !important;
+  align-items: center !important;
+  gap: 2px;
 }

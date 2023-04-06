@@ -1,5 +1,5 @@
-import { Nav, Navbar, NavDropdown, NavItem } from "react-bootstrap";
-import { useContext, useState } from "react";
+import { Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { useContext } from "react";
 import { TasksContext } from "../helpers/TasksProvider";
 import { PresetsContext } from "../helpers/PresetsProvider";
 import { Task } from "../types/task";

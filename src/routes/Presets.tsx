@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import Container from "../components/Container";
 import { PresetsContext } from "../helpers/PresetsProvider";
-import { fixedPresets } from "../helpers/fixedPresets";
 import Navigation from "../components/Navigation";
 
 export default function Presets() {

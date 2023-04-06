@@ -1,8 +1,6 @@
 import {
   Accordion,
   AccordionContext,
-  Card,
-  ListGroup,
   ProgressBar,
   useAccordionButton,
 } from "react-bootstrap";
@@ -34,13 +32,6 @@ function MinMaxButton({ children, eventKey, callback }: any) {
     </button>
   );
 }
-
-const styles = {
-  done: {
-    backgroundColor: "rgba(150, 150, 150, 0.5)",
-  },
-  ongoing: { backgroundColor: "" },
-};
 
 export default function Container(props: any) {
   const { newTask } = useContext(TasksContext);

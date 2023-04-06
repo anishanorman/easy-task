@@ -1,13 +1,12 @@
 import { TasksContext } from "../helpers/TasksProvider";
 import { useContext } from "react";
 import { PresetsContext } from "../helpers/PresetsProvider";
-import { clamp } from "framer-motion";
 
 export default function DeleteBtn(props: any) {
   const { deleteTask } = useContext(TasksContext);
   const { deletePreset } = useContext(PresetsContext);
 
-  function handleClick(event: any) {
+  function handleClick() {
     if (props.type === "task") {
       deleteTask(props.path);
     } else {

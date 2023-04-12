@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { TasksContext } from "../helpers/TasksProvider";
 import Container from "../components/Container";
 import Navigation from "../components/Navigation";
+import Simple from "../components/Simple";
+
 
 export default function Tasks() {
   const { tasks } = useContext(TasksContext);
@@ -12,7 +14,7 @@ export default function Tasks() {
       <div id="tasks">
         {tasks.map((task, index) => {
           return (
-            <Container
+            <Simple
               className="task"
               key={index}
               index={index}

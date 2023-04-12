@@ -2,7 +2,7 @@ import DeleteBtn from "./DeleteBtn";
 import { useContext, useCallback, useEffect, useState, useRef } from "react";
 import { TasksContext } from "../helpers/TasksProvider";
 import { Button, Form } from "react-bootstrap";
-import editIcon from "../assets/editIcon"
+import editIcon from "../assets/editIcon";
 
 export default function SingleTask(props: any) {
   const { tasks, updateTaskDone, updateTaskName, updateTasks, newTask } =
@@ -33,7 +33,7 @@ export default function SingleTask(props: any) {
   }
 
   const handleClick = (e: React.MouseEvent) => {
-    console.log(e)
+    console.log(e);
     if (e.detail === 2) {
       setEditable(true);
     }
@@ -75,7 +75,10 @@ export default function SingleTask(props: any) {
             <strong>
               <p
                 onClick={handleClick}
-                style={{ textDecorationLine: crossedOut(), cursor: `url(${editIcon}), auto` }}
+                style={{
+                  textDecorationLine: crossedOut(),
+                  cursor: `url(${editIcon}), auto`,
+                }}
               >
                 {props.task.task}
               </p>

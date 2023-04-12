@@ -73,7 +73,7 @@ export default function Container(props: any) {
         defaultActiveKey={task.task}
         style={{ backgroundColor: totalProgress==100? "rgba(104, 131, 155, 0.2)" : "" }}
       >
-        {props.task && (
+        {props.parent && (
           <ProgressBar
             now={totalProgress}
             style={props.child ? { height: 5 + "px" } : { height: 10 + "px" }}
